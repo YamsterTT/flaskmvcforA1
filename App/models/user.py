@@ -3,24 +3,29 @@ from App.database import db
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    username =  db.Column(db.String(20), nullable=False, unique=True)
-    password = db.Column(db.String(256), nullable=False)
+    name =  db.Column(db.String(200), nullable=False, unique=True)
+    address =  db.Column(db.String(512), nullable=False, unique=True)
+    role =  db.Column(db.String(20), nullable=False, unique=True)
+    user = db.Column(db.String(250), nullable=False, unique=True)
 
-    def __init__(self, username, password):
-        self.username = username
-        self.set_password(password)
+    def __init__(self, name, address, role, user):
+        self.name = name
+        self.address = address
+        self.role = role
+        self.role = user
 
-    def get_json(self):
-        return{
-            'id': self.id,
-            'username': self.username
-        }
-
-    def set_password(self, password):
-        """Create hashed password."""
-        self.password = generate_password_hash(password)
     
-    def check_password(self, password):
-        """Check hashed password."""
-        return check_password_hash(self.password, password)
+    def create_user(self,user):
+        self.user = user
 
+
+    def set_role(self,role):
+        self.role = role
+
+    def set_address(self,address):
+        self.address = address
+
+    def set_name(self,name):
+        self.name = name
+
+    

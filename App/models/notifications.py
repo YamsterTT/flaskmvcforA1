@@ -14,3 +14,9 @@ class User(db.Model):
         self.status = status
 
 
+
+    def notify_status(self,status):
+        self.status = status
+        return self.status
+    
+
